@@ -1,0 +1,103 @@
+<!-- <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field> -->
+
+<!--Table related html starts from below-->
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ">
+    <!-- piso Column -->
+    <ng-container matColumnDef="piso">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Piso </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container >
+                {{row.piso}}
+            </ng-container>
+        </td>
+
+    </ng-container>
+
+    <!-- porcentajeActual Column -->
+    <ng-container matColumnDef="porcentajeActual">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> % Actual </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container>
+                {{row.porcentajeActual}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <!-- porcentajeMinimo Column -->
+    <ng-container matColumnDef="porcentajeMinimo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> % Minimo </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container>
+                {{row.porcentajeMinimo}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <!-- porcentajeMaximo Column -->
+    <ng-container matColumnDef="porcentajeMaximo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> % Maximo </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container>
+                {{row.porcentajeMaximo}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <!-- porcentajeEntrada Column -->
+    <ng-container matColumnDef="porcentajeEntrada">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> % Entrada </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container>
+                {{row.porcentajeEntrada}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="precioEntrada">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Precio Entrada </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container>
+                {{row.precioEntrada}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="takeProfit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Take Profit </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container>
+                {{row.takeProfit}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="invertido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Invertido </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container>
+                {{row.invertido}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="moneda">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Moneda </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container>
+                {{row.moneda}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+    </tr>
+
+</table>
+<mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+<button mat-raised-button color="primary" matBadge={{selection.selected.length}} (click)="fireDelete()"
+    matBadgePosition="after" matBadgeColor="accent">
+    Delete
+</button>
