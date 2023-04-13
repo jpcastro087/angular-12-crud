@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Vender {{data.moneda}} Piso {{data.piso}}</h1>
+<div mat-dialog-content>
+  <p>Estas seguro que querés vender {{data.moneda}} Piso {{data.piso}} </p>
+  <p [ngStyle]="{'color':retornarColor(data.porcentajeActual)}">Ganancias: {{data.porcentajeActual}} </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="vender()" cdkFocusInitial>Ok</button>
+</div>

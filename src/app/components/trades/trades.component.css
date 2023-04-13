@@ -18,4 +18,14 @@ th.mat-sort-header-sorted {
 .header-align-right {
     text-align: right;
     justify-content: flex-end;
-  }
+}
+
+.verticalAlignTop {
+    vertical-align: top !important;
+}
+
+.mine {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+}

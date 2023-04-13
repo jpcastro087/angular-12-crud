@@ -9,4 +9,5 @@ export interface Trade {
   takeProfit: number;
   invertido: number;
   moneda:string;
+  fecha:string;
 }

@@ -1,6 +1,8 @@
-<!-- <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field> -->
+<form [formGroup]="formGroup" (submit)="applyFilter()">
+    <mat-form-field>
+        <input matInput formControlName="filter" (keyup)="applyFilter()" placeholder="Filter">
+    </mat-form-field>
+</form>
 
 <!--Table related html starts from below-->
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ">
@@ -8,96 +10,150 @@
     <ng-container matColumnDef="piso">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Piso </th>
         <td mat-cell *matCellDef="let row" class="header-align-right">
-            <ng-container >
+            <ng-container>
                 {{row.piso}}
             </ng-container>
         </td>
-
+        <td mat-footer-cell *matFooterCellDef> </td>
     </ng-container>
 
     <!-- porcentajeActual Column -->
     <ng-container matColumnDef="porcentajeActual">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> % Actual </th>
-        <td mat-cell *matCellDef="let row" class="header-align-right">
-            <ng-container>
-                {{row.porcentajeActual}}
+        <td mat-cell *matCellDef="let row" class="header-align-right"
+            [ngStyle]="{'color':retornarColor(row.porcentajeActual)}">
+            <ng-container *ngIf="row.porcentajeActual">
+                {{row.porcentajeActual | number:'1.2-2'}}
+            </ng-container>
+            <ng-container *ngIf="!row.porcentajeActual">
+                -------
             </ng-container>
         </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
     </ng-container>
 
     <!-- porcentajeMinimo Column -->
     <ng-container matColumnDef="porcentajeMinimo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> % Minimo </th>
-        <td mat-cell *matCellDef="let row" class="header-align-right">
-            <ng-container>
-                {{row.porcentajeMinimo}}
+        <td mat-cell *matCellDef="let row" class="header-align-right"
+            [ngStyle]="{'color':retornarColor(row.porcentajeMinimo)}">
+            <ng-container *ngIf="row.porcentajeMinimo">
+                {{row.porcentajeMinimo | number:'1.2-2'}}
+            </ng-container>
+            <ng-container *ngIf="!row.porcentajeMinimo">
+                -------
             </ng-container>
         </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
     </ng-container>
 
     <!-- porcentajeMaximo Column -->
     <ng-container matColumnDef="porcentajeMaximo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> % Maximo </th>
-        <td mat-cell *matCellDef="let row" class="header-align-right">
-            <ng-container>
-                {{row.porcentajeMaximo}}
+        <td mat-cell *matCellDef="let row" class="header-align-right"
+            [ngStyle]="{'color':retornarColor(row.porcentajeMaximo)}">
+            <ng-container *ngIf="row.porcentajeMaximo">
+                {{row.porcentajeMaximo | number:'1.2-2'}}
+            </ng-container>
+            <ng-container *ngIf="!row.porcentajeMaximo">
+                -------
             </ng-container>
         </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
     </ng-container>
 
     <!-- porcentajeEntrada Column -->
     <ng-container matColumnDef="porcentajeEntrada">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> % Entrada </th>
-        <td mat-cell *matCellDef="let row" class="header-align-right">
+        <td mat-cell *matCellDef="let row" class="header-align-right"
+            [ngStyle]="{'color':retornarColor(row.porcentajeEntrada)}">
             <ng-container>
-                {{row.porcentajeEntrada}}
+                {{row.porcentajeEntrada | number:'1.2-2'}}
             </ng-container>
         </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
     </ng-container>
 
     <ng-container matColumnDef="precioEntrada">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Precio Entrada </th>
         <td mat-cell *matCellDef="let row" class="header-align-right">
-            <ng-container>
-                {{row.precioEntrada}}
+            <ng-container *ngIf="row.precioEntrada">
+                {{row.precioEntrada | number:'1.2-2'}}
+            </ng-container>
+            <ng-container *ngIf="!row.precioEntrada">
+                -------
             </ng-container>
         </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
     </ng-container>
 
     <ng-container matColumnDef="takeProfit">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Take Profit </th>
-        <td mat-cell *matCellDef="let row" class="header-align-right">
+        <td mat-cell *matCellDef="let row" class="header-align-right"
+            [ngStyle]="{'color':retornarColor(row.takeProfit)}">
             <ng-container>
-                {{row.takeProfit}}
+                {{row.takeProfit | number:'1.2-2'}}
             </ng-container>
         </td>
+        <td mat-footer-cell *matFooterCellDef class="header-align-right"> Total </td>
     </ng-container>
 
     <ng-container matColumnDef="invertido">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Invertido </th>
-        <td mat-cell *matCellDef="let row" class="header-align-right">
+        <td mat-cell *matCellDef="let row" class="header-align-right"
+            [ngStyle]="{'color':retornarColor(row.invertido)}">
             <ng-container>
-                {{row.invertido}}
+                {{row.invertido | number:'1.2-2'}}
             </ng-container>
         </td>
+        <td mat-footer-cell *matFooterCellDef class="header-align-right"> {{getTotalInvertido()}}</td>
     </ng-container>
 
     <ng-container matColumnDef="moneda">
         <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Moneda </th>
         <td mat-cell *matCellDef="let row" class="header-align-right">
             <ng-container>
-                {{row.moneda}}
+                {{row.moneda }}
             </ng-container>
         </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
     </ng-container>
 
+    <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> Fecha </th>
+        <td mat-cell *matCellDef="let row" class="header-align-right">
+            <ng-container *ngIf="row.fecha">
+                {{row.fecha }}
+            </ng-container>
+            <ng-container *ngIf="!row.fecha">
+                -------
+            </ng-container>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actionsColumn">
+        <mat-header-cell *matHeaderCellDef>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="confirmarVenta(row)" focusable="false">
+                <mat-icon>check_circle</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="editarPiso(row)" focusable="false">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </mat-cell>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-    </tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 
 </table>
-<mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
-<button mat-raised-button color="primary" matBadge={{selection.selected.length}} (click)="fireDelete()"
-    matBadgePosition="after" matBadgeColor="accent">
-    Delete
+<button class="mine" (click)="crearPiso()" mat-fab color="primary">
+    <mat-icon>add</mat-icon>
 </button>
+<!-- <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator> -->
