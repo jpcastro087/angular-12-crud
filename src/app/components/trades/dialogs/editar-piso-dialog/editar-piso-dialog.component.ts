@@ -57,6 +57,8 @@ export class EditarPisoDialogComponent {
       const pisosAnteriores = this.getPisosAnteriores();
       const sumaPorcentajeEntrada = this.getSumaPorcentajeEntradaPisos(pisosAnteriores);
       this.formGroup.get("takeProfit")?.setValue(sumaPorcentajeEntrada)
+    } else if (this.data.piso === 1){
+      this.formGroup.get("takeProfit")?.setValue(this.data.takeProfit);
     }
   }
 

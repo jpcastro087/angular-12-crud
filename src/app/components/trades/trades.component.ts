@@ -125,7 +125,8 @@ export class TradesComponent implements OnInit {
         porcentajeEntrada: row.porcentajeEntrada,
         porcentajeInvertido: row.invertido,
         idPiso:row.idPiso,
-        margen:row.margen
+        margen:row.margen,
+        takeProfit:row.takeProfit
       }
     });
 
