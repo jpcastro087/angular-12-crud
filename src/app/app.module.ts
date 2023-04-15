@@ -20,6 +20,7 @@ import { TradesComponent } from './components/trades/trades.component';
 import { ConfirmacionVentaDialogComponent } from './components/trades/dialogs/confirmacion-venta-dialog/confirmacion-venta-dialog.component';
 import { EditarPisoDialogComponent } from './components/trades/dialogs/editar-piso-dialog/editar-piso-dialog.component';
 import { CrearPisoDialogComponent } from './components/trades/dialogs/crear-piso-dialog/crear-piso-dialog.component';
+import { MonedaVolumenComponent } from './components/moneda-volumen/moneda-volumen.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CrearPisoDialogComponent } from './components/trades/dialogs/crear-piso
     TradesComponent,
     ConfirmacionVentaDialogComponent,
     EditarPisoDialogComponent,
-    CrearPisoDialogComponent
+    CrearPisoDialogComponent,
+    MonedaVolumenComponent
   ],
   imports: [
     BrowserModule,
