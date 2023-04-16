@@ -11,6 +11,7 @@ import { TradeService } from 'src/app/services/trade.service';
 import { ConfirmacionVentaDialogComponent } from './dialogs/confirmacion-venta-dialog/confirmacion-venta-dialog.component';
 import { CrearPisoDialogComponent } from './dialogs/crear-piso-dialog/crear-piso-dialog.component';
 import { EditarPisoDialogComponent } from './dialogs/editar-piso-dialog/editar-piso-dialog.component';
+import { EliminarPisoDialogComponent } from './dialogs/eliminar-piso-dialog/eliminar-piso-dialog.component';
 
 
 
@@ -127,6 +128,23 @@ export class TradesComponent implements OnInit {
         idPiso:row.idPiso,
         margen:row.margen,
         takeProfit:row.takeProfit
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
+  eliminarPiso(row: any) {
+    const trades = this.dataSource.data;
+    const dialogRef = this.dialog.open(EliminarPisoDialogComponent, {
+      width: '380px',
+      data: {
+        moneda: row.moneda,
+        piso: row.piso,
+        idPiso:row.idPiso
       }
     });
 

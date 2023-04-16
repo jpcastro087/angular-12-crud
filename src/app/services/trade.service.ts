@@ -10,6 +10,7 @@ const tradeDetailsUrl = '/details';
 const tradeVentaUrl = '/venta';
 const updatePisoUrl = '/update/piso';
 const createPisoUrl = '/create/piso';
+const deletePisoUrl = '/delete/piso';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,10 @@ export class TradeService {
 
   crearPiso(tradePiso: TradePisoRequest): Observable<any[]> {
     return this.http.post<any[]>(baseUrl + createPisoUrl, tradePiso);
+  }
+
+  deletePiso(tradePiso: TradePisoRequest): Observable<any[]> {
+    return this.http.post<any[]>(baseUrl + deletePisoUrl, tradePiso);
   }
 
 
