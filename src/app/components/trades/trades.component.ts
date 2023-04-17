@@ -51,7 +51,8 @@ export class TradesComponent implements OnInit {
       this.tradeService.getAll().subscribe(trades => {
         this.dataSource = new MatTableDataSource<Trade>(trades);
         this.dataSource.filter = this.formGroup.get("filter")?.value.trim().toLowerCase();
-
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         if (this.windowActive) {
           this.ngOnInit()
         } else {
